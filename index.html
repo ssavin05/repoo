@@ -864,6 +864,19 @@ html{font-size:16px!important}body{font-size:1rem!important;line-height:1.55!imp
 .privacy{max-width:min(720px,calc(100% - 30px));max-height:min(82vh,760px);overflow:auto}
 @media(max-width:900px){.section-lead{grid-template-columns:1fr!important;gap:22px!important}.section-lead>img{height:220px!important}.service-group--secondary .service-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
 @media(max-width:560px){.container{width:calc(100% - 24px)!important}.section-lead>img{height:190px!important}.service-group--secondary .service-grid{grid-template-columns:1fr!important}.service-group--secondary .service-card{min-height:0!important}}
+
+/* V30 — panel de contacto por WhatsApp. */
+.whatsapp-panel{width:min(440px,calc(100% - 28px));padding:0;border:0;border-radius:22px;background:#fff;color:var(--ink);box-shadow:0 28px 80px rgba(0,0,0,.28);overflow:hidden}
+.whatsapp-panel::backdrop{background:rgba(10,11,14,.62);backdrop-filter:blur(4px)}
+.whatsapp-panel__header{display:flex;align-items:center;gap:12px;padding:18px 20px;background:#17171b;color:#fff}
+.whatsapp-panel__icon{display:grid;place-items:center;width:42px;height:42px;flex:0 0 42px;border-radius:50%;background:#25d366}.whatsapp-panel__icon svg{width:23px;height:23px;fill:#fff}
+.whatsapp-panel__title{min-width:0}.whatsapp-panel__title strong{display:block;font-size:1rem}.whatsapp-panel__title span{display:block;margin-top:2px;color:#c9c9cd;font-size:.78rem}
+.whatsapp-panel__close{margin-left:auto;border:0;background:transparent;color:#fff;font-size:1.8rem;line-height:1;cursor:pointer;padding:5px}
+.whatsapp-panel__form{display:grid;gap:13px;padding:20px}.whatsapp-panel__form label{display:grid;gap:6px;font-size:.82rem;font-weight:800}
+.whatsapp-panel__form input,.whatsapp-panel__form textarea{width:100%;border:1px solid #d9d9de;border-radius:12px;background:#fafafa;color:var(--ink);font:inherit;padding:12px 13px;outline:none}.whatsapp-panel__form textarea{min-height:112px;resize:vertical}.whatsapp-panel__form input:focus,.whatsapp-panel__form textarea:focus{border-color:var(--red);box-shadow:0 0 0 3px rgba(178,11,50,.1)}
+.whatsapp-panel__send{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;min-height:48px;border:0;border-radius:999px;background:#25d366;color:#092f18;font-weight:900;cursor:pointer}.whatsapp-panel__send svg{width:20px;height:20px;fill:currentColor}
+.whatsapp-panel__note{min-height:18px;margin:0;color:#6d6d76;font-size:.76rem;line-height:1.4}.whatsapp-panel__note.is-error{color:#a20c2f;font-weight:700}
+@media(max-width:560px){.whatsapp-panel{margin:auto auto 76px;width:calc(100% - 20px);border-radius:18px}.whatsapp-panel__form{padding:17px}.whatsapp-panel__header{padding:15px 17px}}
 </style>
 <!-- V16 standalone: CSS, JS e imágenes incrustados -->
 </head>
@@ -1218,6 +1231,20 @@ html{font-size:16px!important}body{font-size:1rem!important;line-height:1.55!imp
 
   <a class="whatsapp-float" href="#contacto" data-whatsapp-link aria-label="Contactar por WhatsApp"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3a12.7 12.7 0 0 0-10.9 19.2L3.4 28.6l6.5-1.7A12.8 12.8 0 1 0 16 3Zm0 22.8c-2 0-3.9-.6-5.5-1.6l-.4-.2-3.8 1 1-3.7-.3-.4A10.1 10.1 0 1 1 16 25.8Zm5.6-7.6c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2l-1 1.2c-.2.3-.4.3-.7.1-1.8-.9-3-1.7-4.2-3.8-.3-.5.3-.5.9-1.7.1-.2 0-.5 0-.7l-1-2.4c-.3-.6-.6-.5-.8-.5h-.7c-.3 0-.7.1-1 .5-1 1.1-1.5 2.4-1.4 3.8 0 2.2 1.6 4.3 1.8 4.6.2.3 3.1 4.8 7.6 6.5 2.8 1.1 3.9 1.2 5.3 1 1.2-.2 2.8-1.2 3.2-2.3.4-1.1.4-2 .3-2.2-.2-.3-.5-.4-.8-.5Z"/></svg><span>WhatsApp</span></a>
 
+  <dialog class="whatsapp-panel" id="whatsappPanel" aria-labelledby="whatsappPanelTitle">
+    <div class="whatsapp-panel__header">
+      <span class="whatsapp-panel__icon" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M16 3a12.7 12.7 0 0 0-10.9 19.2L3.4 28.6l6.5-1.7A12.8 12.8 0 1 0 16 3Zm0 22.8c-2 0-3.9-.6-5.5-1.6l-.4-.2-3.8 1 1-3.7-.3-.4A10.1 10.1 0 1 1 16 25.8Zm5.6-7.6c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2l-1 1.2c-.2.3-.4.3-.7.1-1.8-.9-3-1.7-4.2-3.8-.3-.5.3-.5.9-1.7.1-.2 0-.5 0-.7l-1-2.4c-.3-.6-.6-.5-.8-.5h-.7c-.3 0-.7.1-1 .5-1 1.1-1.5 2.4-1.4 3.8 0 2.2 1.6 4.3 1.8 4.6.2.3 3.1 4.8 7.6 6.5 2.8 1.1 3.9 1.2 5.3 1 1.2-.2 2.8-1.2 3.2-2.3.4-1.1.4-2 .3-2.2-.2-.3-.5-.4-.8-.5Z"/></svg></span>
+      <div class="whatsapp-panel__title"><strong id="whatsappPanelTitle">Enviar mensaje</strong><span>Ibarra y Asesores, S.C.</span></div>
+      <button class="whatsapp-panel__close" id="whatsappPanelClose" type="button" aria-label="Cerrar panel">×</button>
+    </div>
+    <form class="whatsapp-panel__form" id="whatsappPanelForm">
+      <label>Su nombre <input type="text" name="waNombre" autocomplete="name" placeholder="Nombre (opcional)"></label>
+      <label>Mensaje <textarea name="waMensaje" required>Hola, me gustaría recibir información sobre sus servicios.</textarea></label>
+      <button class="whatsapp-panel__send" type="submit"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3a12.7 12.7 0 0 0-10.9 19.2L3.4 28.6l6.5-1.7A12.8 12.8 0 1 0 16 3Zm0 22.8c-2 0-3.9-.6-5.5-1.6l-.4-.2-3.8 1 1-3.7-.3-.4A10.1 10.1 0 1 1 16 25.8Zm5.6-7.6c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2l-1 1.2c-.2.3-.4.3-.7.1-1.8-.9-3-1.7-4.2-3.8-.3-.5.3-.5.9-1.7.1-.2 0-.5 0-.7l-1-2.4c-.3-.6-.6-.5-.8-.5h-.7c-.3 0-.7.1-1 .5-1 1.1-1.5 2.4-1.4 3.8 0 2.2 1.6 4.3 1.8 4.6.2.3 3.1 4.8 7.6 6.5 2.8 1.1 3.9 1.2 5.3 1 1.2-.2 2.8-1.2 3.2-2.3.4-1.1.4-2 .3-2.2-.2-.3-.5-.4-.8-.5Z"/></svg>Continuar en WhatsApp</button>
+      <p class="whatsapp-panel__note" id="whatsappPanelNote" aria-live="polite">Se abrirá WhatsApp con su mensaje listo para enviar.</p>
+    </form>
+  </dialog>
+
   <dialog class="privacy" id="privacyDialog">
     <button class="privacy__close" id="privacyClose" aria-label="Cerrar">×</button>
     <h2>Aviso de privacidad</h2>
@@ -1282,12 +1309,42 @@ window.IBARRA_CONFIG = {
 
   const waLinks = $$('[data-whatsapp-link]');
   const waBaseMessage = 'Hola, me gustaría recibir información sobre los servicios contables y administrativos.';
+  const whatsappPanel = $('#whatsappPanel');
+  const whatsappPanelForm = $('#whatsappPanelForm');
+  const whatsappPanelNote = $('#whatsappPanelNote');
   waLinks.forEach(waLink => {
-    if (config.whatsapp) {
-      waLink.href = `https://wa.me/${config.whatsapp.replace(/\D/g,'')}?text=${encodeURIComponent(waBaseMessage)}`;
-      waLink.target = '_blank';
-      waLink.rel = 'noopener';
-    } else { waLink.href = '#contacto'; }
+    waLink.href = '#';
+    waLink.removeAttribute('target');
+    waLink.removeAttribute('rel');
+    waLink.addEventListener('click', event => {
+      event.preventDefault();
+      whatsappPanelNote?.classList.remove('is-error');
+      if (whatsappPanelNote) whatsappPanelNote.textContent = 'Se abrirá WhatsApp con su mensaje listo para enviar.';
+      if (whatsappPanel && !whatsappPanel.open) {
+        whatsappPanel.showModal();
+        setTimeout(() => whatsappPanel.querySelector('textarea')?.focus(), 80);
+      }
+    });
+  });
+
+  $('#whatsappPanelClose')?.addEventListener('click', () => whatsappPanel?.close());
+  whatsappPanel?.addEventListener('click', event => {
+    if (event.target === whatsappPanel) whatsappPanel.close();
+  });
+  whatsappPanelForm?.addEventListener('submit', event => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    const name = String(data.get('waNombre') || '').trim();
+    const body = String(data.get('waMensaje') || waBaseMessage).trim();
+    const message = name ? `Hola, soy ${name}.\n\n${body}` : body;
+    const number = String(config.whatsapp || '').replace(/\D/g,'');
+    if (!number) {
+      whatsappPanelNote?.classList.add('is-error');
+      if (whatsappPanelNote) whatsappPanelNote.textContent = 'Falta configurar el número oficial de WhatsApp para poder enviar el mensaje.';
+      return;
+    }
+    window.open(`https://wa.me/${number}?text=${encodeURIComponent(message)}`, '_blank', 'noopener');
+    whatsappPanel.close();
   });
 
   $('#contactForm')?.addEventListener('submit', (event) => {
