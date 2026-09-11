@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Reemplazar DOMINIO-OFICIAL.mx antes de publicar:
+# Sitemap: https://DOMINIO-OFICIAL.mx/sitemap.xml
